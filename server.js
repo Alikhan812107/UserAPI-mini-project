@@ -3,7 +3,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const PORT = 3000;
+const PORT = 3005;
 
 app.use(express.static("public"));
 
@@ -49,31 +49,53 @@ app.get("/api/profile", async (req, res) => {
 
    // Exchange rates
 
-    let exchangeRates = null;
+let exchangeRates = null;
 
-    if (currencyCode) {
-      const exchangeRes = await axios.get(
-        `https://v6.exchangerate-api.com/v6/${process.env.EXCHANGE_API_KEY}/latest/${currencyCode}`
-      );
-
-      exchangeRates = {
-        base: currencyCode,
-        USD: exchangeRes.data.conversion_rates.USD,
-        KZT: exchangeRes.data.conversion_rates.KZT
-      };
-    }
-
-   // News API
-    const newsRes = await axios.get(
-      `https://newsapi.org/v2/everything?q=${cleanedUser.country}&language=en&pageSize=5&apiKey=${process.env.NEWS_API_KEY}`
+if (currencyCode) {
+  try {
+    const exchangeRes = await axios.get(
+      `https://v6.exchangerate-api.com/v6/${process.env.EXCHANGE_API_KEY}/latest/${currencyCode}`
     );
 
-    const news = newsRes.data.articles.map(article => ({
-      title: article.title,
-      description: article.description,
-      image: article.urlToImage,
-      url: article.url
-    }));
+    exchangeRates = {
+      base: currencyCode,
+      USD: exchangeRes.data.conversion_rates.USD,
+      KZT: exchangeRes.data.conversion_rates.KZT
+    };
+  } catch (error) {
+    console.log("Exchange API error");
+    exchangeRates = null;
+  }
+}
+
+
+   // News API
+    let news = [];
+
+    try {
+      const newsRes = await axios.get(
+        "https://newsapi.org/v2/top-headlines",
+        {
+          params: {
+            q: cleanedUser.country,
+            language: "en",
+            pageSize: 5,
+            apiKey: process.env.NEWS_API_KEY
+          }
+        }
+      );
+
+      news = newsRes.data.articles.map(article => ({
+        title: article.title,
+        description: article.description,
+        image: article.urlToImage,
+        url: article.url
+      }));
+    } catch (error) {
+      console.log("News API error:", error.response?.status);
+      news = [];
+    }
+
 
    
     //Final response

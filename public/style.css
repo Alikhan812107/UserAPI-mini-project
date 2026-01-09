@@ -1,25 +1,109 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY */
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 15px;
 }
 
 button {
-  padding: 10px 15px;
-  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: #3b82f6;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
+button:hover {
+  background: #e0e7ff;
+}
+
+/* MAIN CONTENT */
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* CARD */
 .card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-img {
-  max-width: 150px;
-  border-radius: 8px;
+/* USER CARD */
+.card img {
+  max-width: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 6px;
+}
+
+/* COUNTRY FLAG */
+.card img[width="80"] {
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* NEWS */
+.news {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 15px;
+  margin-top: 15px;
 }
 
 .news img {
-  max-width: 200px;
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.news a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
 }
