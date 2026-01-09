@@ -56,10 +56,7 @@ dotenv
 
 3️⃣ Configure environment variables
 
-Create a .env file in the root directory:
-
-EXCHANGE_API_KEY=your_exchange_rate_api_key
-NEWS_API_KEY=your_news_api_key
+Create a .env file in the root directory
 
 
 ⚠️ Important:
@@ -74,7 +71,7 @@ node server.js
 
 The server will start on:
 
-http://localhost:3000
+http://localhost:3005
 
 🌐 API Usage
 🔹 Backend Endpoint
@@ -83,7 +80,7 @@ GET /api/profile
 This endpoint aggregates data from multiple external APIs and returns a single JSON object.
 
 Example URL:
-http://localhost:3000/api/profile
+http://localhost:3005/api/profile
 
 Example Response:
 {
